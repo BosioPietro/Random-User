@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+  
+<html>
+<head lang="it">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+    <title>Random User Generator | Home</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script src="js/richiesta_api.js"></script>
+    <script src="./js/index.js"></script>
+    <link rel="stylesheet" href="./css/style.css"/>
+</head>
+
+<body onkeydown="easterEgg()">
+    <div id="cErrore" class="flexRow">
+        <span></span>
+        <span class="material-symbols-outlined pointer" onclick="$('#cErrore').css('transform', '')">close</span>
+    </div>
+        <nav class="navbar navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon" style="filter: invert(100%);"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                    <li class="hCell pointer flexColumn">
+                        <a href="./index.html">
+                            <div class="imgCell"></div>
+                            Home
+                        </a>
+                    </li>
+                    <li class="hCell pointer flexColumn">
+                        <a href="https://randomuser.me/photos">
+                            <div class="imgCell"></div>
+                            User Photos
+                        </a>
+                    </li>
+                    <li class="hCell pointer flexColumn">
+                        <a href="https://randomuser.me/documentation">
+                            <div class="imgCell"></div>
+                            Documentation
+                        </a>
+                    </li>
+                    <li class="hCell pointer flexColumn">
+                        <a href="https://randomuser.me/changelog">
+                            <div class="imgCell"> </div>
+                            Change Log
+                        </a>
+                    </li>
+                    <li class="hCell pointer flexColumn">
+                        <a href="https://randomuser.me/stats">
+                            <div class="imgCell"></div>
+                            Stats & Graphs
+                        </a>
+                    </li>
+                    <li class="hCell pointer flexColumn">
+                        <a href="https://randomuser.me/donate">
+                            <div class="imgCell"></div>
+                            Donate
+                        </a>
+                    </li>
+                    <li class="hCell pointer flexColumn">
+                        <a href="https://randomuser.me/copyright">
+                            <div class="imgCell"></div>
+                            Copyrigth Notice
+                        </a>
+                    </li>
+                    <li class="hCell pointer flexColumn">
+                        <a href="https://randomuser.me/photoshop">
+                            <div class="imgCell"></div>
+                            Photoshop Extension
+                        </a>
+                    </li>
+              </ul>
+            </div>
+          </nav>
+    <section id="sGrigio" class="flexColumn">
+        <h1>RANDOM USER GENERATOR</h1>
+        <p>A free, <a href="https://github.com/RandomAPI/Randomuser.me-Node">open-source</a> API for generating random user data. Like Lorem Ipsum, but for people.</p>
+        <span class="flexRow">
+            <img src="https://randomuser.me/img/twitter.png" style="height: 25px;">
+            Follow us on &nbsp;<a href="https://twitter.com/randomapi" style="color: #909CA1;">@randomapi</a>
+        </span>
+    </section>
+    <section id="sBianco" class="flexColumn">
+        <div id="dPersona" class="flexColumn">
+            <span class="cOverlay flexRow">
+                <button class="material-symbols-outlined pointer" onclick="muovi(-1)">arrow_back_ios</button>
+                <div class="prevImg pointer" onclick="muovi(-1)"></div>
+            </span>
+            <span class="cOverlay flexRow">
+                <div class="prevImg pointer" onclick="muovi(1)"></div>
+                <button class="material-symbols-outlined pointer" onclick="muovi(1)">arrow_forward_ios</button>
+            </span>
+            <div id="cImg" class="flexColumn">
+                <div class="material-symbols-outlined pointer" id="iconaGriglia" onclick="mostraGriglia()">grid_on</div>
+                <div id="grigliaOverlay">
+                    <div class="flexColumn" style="align-items: center; overflow: hidden; white-space: nowrap;">
+                        <h2 style="color: white; font-weight: bold; width: 100%; text-align: center;">Generated Users</h2>
+                        <div class="flexColumn" id="cCaselle"></div>
+                    </div>
+                </div>
+                <div id="cSelect" class="flexRow">
+                    <div class="flexColumn">
+                        <div id="selected"></div>
+                        <hr></hr>
+                        <div id="cList" class="flexColumn"></div>
+                    </div>
+                </div>
+                <span>
+                    <img>
+                    <div id="new" class="pointer" onclick="gen(true)"> New</div>
+                </span>
+            </div>
+            <div id="cControlli" class="flexColumn">
+                <h4>Hi, My name is</h4>
+                <h1>...</h1>
+                <div id="cMenu"></div>
+            </div>
+        </div>
+        <div id="cSponsored" class="flexColumn">
+            <h5>SPONSORED</h5>
+            <h2>RandomAPI</h2>
+            <p>Want to create your own <b>customized</b> data generator for your application?
+                <br>Check out our other service RandomAPI!</p>
+                <a href="https://randomapi.com/" target="_blank"><button class="pointer">Learn More</button></a>
+        </div>
+        <div id="cTesto" class="flexColumn">
+            <h2>Generate</h2>
+            <p>You can also generate users using the interface below.  The generationcan be refined by changing the parameters.</p>
+            <div id="cGenera" class="flexColumn">
+                <div id="dForm" class="flexRow">
+                    <div id="cGender" class="flexColumn">
+                        <h2>Gender</h2>
+                        <span class="checkboxU pointer" value="male">Male</span>
+                        <span class="checkboxU pointer" value="female">Female</span>
+                        <span class="checkboxC pointer" value="all">All</span>
+                    </div>
+                    <div id="cNat" class="flexRow">
+                        <h2>Nationality</h2>
+                    </div>
+                </div>
+                <div class="formOr flexRow">
+                    <h2 style="margin: 0;">Quantity</h2>
+                    <input type="range" min="1"value="1" oninput='$(this).next().text($(this).val())' class="pointer">
+                    <h2 style="margin: 0; overflow-x: visible; white-space: nowrap;" contenteditable onkeyup="controllaNumero(this)" onkeydown="controllaValore(this)">1</h2>
+                </div>
+                <div class="formOr flexRow">
+                    <button onclick="gen();	$('html, body').animate({ scrollTop: 0 }, 600)" class="pointer" disabled>Generate</button>
+                </div>
+                <div id="cLego" class="flexRow" style="justify-content: center; font-weight: bold;">
+                    Lego &nbsp;<input type="checkbox" value="lego">
+                </div>
+            </div>
+            <h2>How to use</h2>
+            <p>You can use AJAX to call the Random User Generator API and will receive a randomly generated user in return. 
+            If you are using jQuery, you can use the $.ajax() function in the code snippet below to get started.</p>
+            <pre>
+$.ajax({
+    url: '<span>https://randomuser.me/api/</span>',
+    dataType: '<span>json</span>',
+    success: function(<span>data</span>) {
+        console.log(<span>data</span>);
+    }
+    });
+
+            </pre>
+            <h2>Results</h2>
+            <p>The application will provide you with a JSON, XML, CSV, or YAML object that you can parse and apply to your application.</p>
+            <p>You can specify the format you want the results in using the <a href="https://randomuser.me/documentation#format" target="_self">format</a> parameter.</p>
+            <pre>
+{
+  "results": [
+    {
+      "gender": "<span>female</span>",
+      "name": {
+        "title": "<span>Miss</span>",
+        "first": "<span>Jennie</span>",
+        "last": "<span>Nichols</span>"
+      },
+      "location": {
+        "street": {
+          "number": <span>8929</span>,
+          "name": "<span>Valwood Pkwy</span>",
+        },
+        "city": "<span>Billings</span>",
+        "state": "<span>Michigan</span>",
+        "country": "<span>United States</span>",
+        "postcode": "<span>63104</span>",
+        "coordinates": {
+          "latitude": "<span>-69.8246</span>",
+          "longitude": "<span>134.8719</span>"
+        },
+        "timezone": {
+          "offset": "<span>+9:30</span>",
+          "description": "<span>Adelaide, Darwin</span>"
+        }
+      },
+      "email": "<span>jennie.nichols@example.com</span>",
+      "login": {
+        "uuid": "<span>7a0eed16-9430-4d68-901f-c0d4c1c3bf00</span>",
+        "username": "<span>yellowpeacock117</span>",
+        "password": "<span>addison</span>",
+        "salt": "<span>sld1yGtd</span>",
+        "md5": "<span>ab54ac4c0be9480ae8fa5e9e2a5196a3</span>",
+        "sha1": "<span>edcf2ce613cbdea349133c52dc2f3b83168dc51b</span>",
+        "sha256": "<span>48df5229235ada28389b91e60a935e4f9b73eb4bdb855ef9258a1751f10bdc5d</span>"
+      },
+      "dob": {
+        "date": "<span>1992-03-08T15:13:16.688Z</span>",
+        "age": <span>30</span>
+      },
+      "registered": {
+        "date": "<span>2007-07-09T05:51:59.390Z</span>",
+        "age": <span>14</span>
+      },
+      "phone": "<span>(272) 790-0888</span>",
+      "cell": "<span>(489) 330-2385</span>",
+      "id": {
+        "name": "<span>SSN</span>",
+        "value": "<span>405-88-3636</span>"
+      },
+      "picture": {
+        "large": "<span>https://randomuser.me/api/portraits/men/75.jpg</span>",
+        "medium": "<span>https://randomuser.me/api/portraits/med/men/75.jpg</span>",
+        "thumbnail": "<span>https://randomuser.me/api/portraits/thumb/men/75.jpg</span>"
+      },
+      "nat": "<span>US</span>"
+    }
+  ],
+  "info": {
+    "seed": "<span>56d27f4a53bd5441</span>",
+    "results": <span>1</span>,
+    "page": <span>1</span>,
+    "version": "<span>1.4</span>"
+  }
+}
+            </pre>
+        <h2>Thank you for helping us help you help us all</h2>
+        <p>Found a bug or have an idea?<br>
+        Contribute to randomuser.me's database on our <a href="https://github.com/RandomAPI/Randomuser.me-Node">Github Repo</a>.</p>
+        <h2>Contact Us</h2>
+        <p>If you have any questions/feedback or would like to get in touch with us, tweet us <a href="https://twitter.com/randomapi">@randomapi</a></p>
+        <span id="cEE">↑ ↑ ↓ ↓ ← → ← → B A</span>
+        </div>
+    </section>
+    <footer>
+        <div id="cFooter" class="flexColumn">
+            <h1>RANDOM USER GENERATOR</h1>
+            <div class="flexRow">
+            <span id="cAutori" class="flexRow">
+                <div>
+                    <div class="cTarga">Designed</div>
+                    <a href="https://twitter.com/arronhunt"><img src="./img/creator_arron.png"></a>
+                </div>
+                <div>
+                    <div class="cTarga">Developed</div>
+                    <a href="https://twitter.com/solewolf1993"><img src="./img/creator_keith.png"></a>
+                </div>
+            </span>
+            <span id="cCpr" class="flexColumn">
+                <h4>Copyright Notice</h4>
+                <p>All randomly generated photos were hand picked from the authorized section of <a href="https://uifaces.com/">UI Faces</a>. 
+                Please visit <a href="https://web.archive.org/web/20160811185628/http://uifaces.com/faq">UI Faces FAQ</a> for more information regarding how you can use these faces.</p>
+            </span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
